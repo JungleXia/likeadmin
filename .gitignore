@@ -1,0 +1,12 @@
+.idea
+*.iws
+*.iml
+*.ipr
+target/
+application-dev.yml
+application-pro.yml
+application-dem.yml
+application-prod.yml
+application-test.yml
+/public/uploads/*
+!/public/uploads/index.html
