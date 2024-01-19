@@ -66,6 +66,11 @@ spring:
         max-active: 100 # 连接池最大连接数(使用负数表示没有限制,默认8)
         max-idle: 20    # 连接池中的最大空闲连接(默认8)
         min-idle: 0     # 连接池中的最小空闲连接(默认0)
+  # mongodb
+  data:
+    mongodb:
+        uri: mongodb://zfh_app:123456@192.168.0.246:27017/zfh_app?authSource=zfh_app&authMechanism=SCRAM-SHA-1
+
 
 # Mybatis-plus配置
 mybatis-plus:
@@ -92,4 +97,5 @@ sa-token:
 #日志
 logging:
   config: classpath:log4j2-spring.xml
-  path: D:\log\likeadmin
+  file:
+    path: D:\log\likeadmin
