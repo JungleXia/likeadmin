@@ -1,15 +1,11 @@
-13:10:18.669 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
-13:10:18.779 [main] INFO  com.mdd.admin.LikeAdminApplication - Starting LikeAdminApplication using Java 1.8.0_92 on Javis with PID 19088 (D:\github\likeadmin_java-master\server\like-admin\target\classes started by Administrator in D:\github\likeadmin_java-master\server\like-admin)
-13:10:18.783 [main] INFO  com.mdd.admin.LikeAdminApplication - The following 1 profile is active: "dev"
-13:10:23.368 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-13:10:23.368 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-13:10:23.369 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
-13:10:23.504 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-13:10:24.454 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
-13:10:24.468 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-13:10:24.468 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
-13:10:24.469 [main] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
-13:10:24.469 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+17:56:41.803 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+17:56:41.830 [main] INFO  com.mdd.admin.controller.EsfHouseTest - Starting EsfHouseTest using Java 1.8.0_92 on Javis with PID 3644 (started by Administrator in D:\workspace1\likeadmin\server\like-admin)
+17:56:41.831 [main] INFO  com.mdd.admin.controller.EsfHouseTest - The following 1 profile is active: "dev"
+17:56:44.536 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+17:56:44.547 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+17:56:44.548 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+17:56:44.548 [main] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+17:56:44.549 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -17,12 +13,54 @@
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-13:10:24.469 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-13:10:24.469 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
-13:10:24.469 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@35563e4c
-13:10:24.583 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Starting...
-13:10:24.866 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Start completed.
-13:10:29.134 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
-13:10:29.984 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
-13:10:29.991 [main] INFO  com.mdd.admin.LikeAdminApplication - Started LikeAdminApplication in 11.749 seconds (JVM running for 12.332)
-13:12:48.191 [http-nio-8082-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+17:56:44.549 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+17:56:44.549 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+17:56:44.549 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@67e77f52
+17:56:44.646 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Starting...
+17:56:44.845 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Start completed.
+17:56:47.895 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.6.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/1.8.0_92-b14"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=SCRAM-SHA-1, userName='zfh_app', source='zfh_app', password=<hidden>, mechanismProperties=<hidden>}, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.Jep395RecordCodecProvider@37bda983]}, clusterSettings={hosts=[192.168.0.246:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='30000 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, sendBufferSize=0}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, sendBufferSize=0}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, contextProvider=null}
+17:56:48.498 [cluster-ClusterId{value='65aa475d932bfb3bc7c8a811', description='null'}-192.168.0.246:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:8520}] to 192.168.0.246:27017
+17:56:48.498 [cluster-rtt-ClusterId{value='65aa475d932bfb3bc7c8a811', description='null'}-192.168.0.246:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:8519}] to 192.168.0.246:27017
+17:56:48.507 [cluster-ClusterId{value='65aa475d932bfb3bc7c8a811', description='null'}-192.168.0.246:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=192.168.0.246:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=608938800}
+17:56:52.752 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+17:56:52.760 [main] INFO  com.mdd.admin.controller.EsfHouseTest - Started EsfHouseTest in 11.231 seconds (JVM running for 14.127)
+17:56:53.140 [main] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:3, serverValue:8521}] to 192.168.0.246:27017
+17:56:53.236 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+17:56:53.277 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+17:56:53.277 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+17:56:53.278 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+17:56:53.280 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown initiated...
+17:56:53.285 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown completed.
+18:03:55.420 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+18:03:55.449 [main] INFO  com.mdd.admin.controller.EsfHouseTest - Starting EsfHouseTest using Java 1.8.0_92 on Javis with PID 5084 (started by Administrator in D:\workspace1\likeadmin\server\like-admin)
+18:03:55.449 [main] INFO  com.mdd.admin.controller.EsfHouseTest - The following 1 profile is active: "dev"
+18:03:57.877 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+18:03:57.889 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+18:03:57.889 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+18:03:57.890 [main] INFO  org.quartz.simpl.RAMJobStore - RAMJobStore initialized.
+18:03:57.891 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+18:03:57.891 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+18:03:57.891 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+18:03:57.891 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@67e77f52
+18:03:57.984 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Starting...
+18:03:58.153 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Start completed.
+18:03:58.841 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.6.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/1.8.0_92-b14"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=MongoCredential{mechanism=SCRAM-SHA-1, userName='zfh_app', source='zfh_app', password=<hidden>, mechanismProperties=<hidden>}, streamFactoryFactory=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.Jep395RecordCodecProvider@1201e064]}, clusterSettings={hosts=[192.168.0.246:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='30000 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, sendBufferSize=0}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, sendBufferSize=0}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, contextProvider=null}
+18:03:58.859 [cluster-rtt-ClusterId{value='65aa490e3c76b52b071327b3', description='null'}-192.168.0.246:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:8524}] to 192.168.0.246:27017
+18:03:58.859 [cluster-ClusterId{value='65aa490e3c76b52b071327b3', description='null'}-192.168.0.246:27017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:8525}] to 192.168.0.246:27017
+18:03:58.859 [cluster-ClusterId{value='65aa490e3c76b52b071327b3', description='null'}-192.168.0.246:27017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=192.168.0.246:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=24969700}
+18:04:02.965 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+18:04:02.974 [main] INFO  com.mdd.admin.controller.EsfHouseTest - Started EsfHouseTest in 7.823 seconds (JVM running for 9.273)
+18:04:03.355 [main] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:3, serverValue:8526}] to 192.168.0.246:27017
+18:04:03.450 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+18:04:03.476 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+18:04:03.476 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+18:04:03.476 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+18:04:03.479 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown initiated...
+18:04:03.483 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown completed.
