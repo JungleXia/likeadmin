@@ -22,7 +22,7 @@ public class LjEsfHouseServiceImpl extends BaseMongoServiceImpl<LjEsfHouse> impl
 
     @Override
     public PageResult<LjEsfHouse> list(PageValidate pageValidate, HouseSearchValidate searchValidate, HouseOrderByValidate houseOrderByValidate) {
-        List<Sort.Order> orders =new ArrayList<Sort.Order>();
+        List<Sort.Order> orders =new ArrayList<>();
         if (houseOrderByValidate != null) {
             Map<String, String> sortMap = MapUtils.objectToMap(houseOrderByValidate);
             for (Map.Entry<String, String> entry : sortMap.entrySet()) {

@@ -92,7 +92,7 @@ public class ILjEsfStatisticServiceImpl extends BaseMongoServiceImpl<LjEsfStatis
 		}
     	for (String province : provinceSet) {
     		CityVo model = new CityVo();
-    		model.setInitials(String.valueOf(PinyinHelper.getShortPinyin(province).toUpperCase()));
+    		model.setInitials(PinyinHelper.getShortPinyin(province).toUpperCase());
     		model.setExpaned(false);
     		model.setName(province);
     		model.setProvince(province);

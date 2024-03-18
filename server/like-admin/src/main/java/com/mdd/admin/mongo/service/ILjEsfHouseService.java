@@ -5,9 +5,7 @@ import com.mdd.admin.mongo.entity.LjEsfHouse;
 import com.mdd.admin.validate.commons.PageValidate;
 import com.mdd.admin.validate.house.HouseOrderByValidate;
 import com.mdd.admin.validate.house.HouseSearchValidate;
-import com.mdd.admin.vo.house.HouseListedVo;
 import com.mdd.common.core.PageResult;
-import org.springframework.data.domain.Page;
 
 public interface ILjEsfHouseService extends BaseMongoService<LjEsfHouse> {
     /**

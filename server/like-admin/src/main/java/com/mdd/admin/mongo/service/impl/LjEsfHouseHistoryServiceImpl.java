@@ -1,9 +1,7 @@
 package com.mdd.admin.mongo.service.impl;
 
-import com.mdd.admin.mongo.entity.LjEsfHouse;
 import com.mdd.admin.mongo.entity.LjEsfHouseHistory;
 import com.mdd.admin.mongo.service.ILjEsfHouseHistoryService;
-import com.mdd.admin.mongo.service.ILjEsfHouseService;
 import org.springframework.stereotype.Service;
 
 /**
