@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @author JungleXia
  * @version 1.0
  * @title HouseVo
- * @description 房源信息展示
+ * @description 城市信息展示
  * @date 2024/1/19 13:47:55
  */
 @Data

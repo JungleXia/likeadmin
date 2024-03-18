@@ -70,6 +70,10 @@ spring:
   data:
     mongodb:
         uri: mongodb://zfh_app:123456@192.168.0.246:27017/zfh_app?authSource=zfh_app&authMechanism=SCRAM-SHA-1
+  #缓存配置
+  cache:
+    type: redis
+    cache-names: likeadmin
 
 
 # Mybatis-plus配置

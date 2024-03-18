@@ -16,4 +16,12 @@ export function houseDetail(params: any) {
     return request.get({ url: '/esf/house/detail', params })
 }
 
+// 城市列表
+export function cityListAll(params?: any) {
+    return request.get({ url: '/esf/city/list', params })
+}
 
+// 二手房历史记录
+export function houseHistory(params: any) {
+    return request.get({ url: '/esf/house/history', params })
+}

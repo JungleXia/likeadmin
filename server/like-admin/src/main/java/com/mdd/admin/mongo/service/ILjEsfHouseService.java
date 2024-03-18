@@ -3,6 +3,7 @@ package com.mdd.admin.mongo.service;
 
 import com.mdd.admin.mongo.entity.LjEsfHouse;
 import com.mdd.admin.validate.commons.PageValidate;
+import com.mdd.admin.validate.house.HouseOrderByValidate;
 import com.mdd.admin.validate.house.HouseSearchValidate;
 import com.mdd.admin.vo.house.HouseListedVo;
 import com.mdd.common.core.PageResult;
@@ -17,5 +18,5 @@ public interface ILjEsfHouseService extends BaseMongoService<LjEsfHouse> {
      * @return PageResult<ArticleListVo>
      * @author fzr
      */
-    PageResult<LjEsfHouse> list(PageValidate pageValidate, HouseSearchValidate searchValidate);
+    PageResult<LjEsfHouse> list(PageValidate pageValidate, HouseSearchValidate searchValidate, HouseOrderByValidate houseOrderByValidate);
 }

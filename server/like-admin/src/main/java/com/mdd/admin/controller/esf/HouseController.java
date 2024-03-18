@@ -2,27 +2,23 @@ package com.mdd.admin.controller.esf;
 
 import com.mdd.admin.aop.Log;
 import com.mdd.admin.mongo.entity.LjEsfHouse;
+import com.mdd.admin.mongo.entity.LjEsfHouseHistory;
+import com.mdd.admin.mongo.service.ILjEsfHouseHistoryService;
 import com.mdd.admin.mongo.service.ILjEsfHouseService;
-import com.mdd.admin.service.IArticleService;
-import com.mdd.admin.validate.article.ArticleCreateValidate;
-import com.mdd.admin.validate.article.ArticleSearchValidate;
-import com.mdd.admin.validate.article.ArticleUpdateValidate;
-import com.mdd.admin.validate.commons.IdValidate;
 import com.mdd.admin.validate.commons.PageValidate;
+import com.mdd.admin.validate.house.HouseOrderByValidate;
 import com.mdd.admin.validate.house.HouseSearchValidate;
-import com.mdd.admin.vo.article.ArticleDetailVo;
-import com.mdd.admin.vo.article.ArticleListedVo;
-import com.mdd.admin.vo.house.HouseListedVo;
 import com.mdd.common.core.AjaxResult;
 import com.mdd.common.core.PageResult;
 import com.mdd.common.validator.annotation.IDMust;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * @author JungleXia
@@ -39,11 +35,15 @@ public class HouseController {
     @Resource
     ILjEsfHouseService iLjEsfHouseService;
 
+    @Resource
+    ILjEsfHouseHistoryService iLjEsfHouseHistoryService;
+
     @GetMapping("/list")
     @ApiOperation(value="房源列表")
     public AjaxResult<PageResult<LjEsfHouse>> list(@Validated PageValidate pageValidate,
-                                             @Validated HouseSearchValidate searchValidate) {
-        PageResult<LjEsfHouse> vos = iLjEsfHouseService.list(pageValidate, searchValidate);
+                                             @Validated HouseSearchValidate searchValidate,
+                                                   @Validated HouseOrderByValidate houseOrderByValidate) {
+        PageResult<LjEsfHouse> vos = iLjEsfHouseService.list(pageValidate, searchValidate, houseOrderByValidate);
         return AjaxResult.success(vos);
     }
 
@@ -54,6 +54,12 @@ public class HouseController {
         return AjaxResult.success(vo);
     }
 
+    @GetMapping("/history")
+    @ApiOperation(value="房源历史")
+    public AjaxResult<List<LjEsfHouseHistory>> history(@Validated @NotNull @RequestParam("houseNo") String houseNo) {
+        List<LjEsfHouseHistory> list = iLjEsfHouseHistoryService.findByProp("houseNo", houseNo, "id desc");
+        return AjaxResult.success(list);
+    }
 
     @Log(title = "房源删除")
     @PostMapping("/del")
