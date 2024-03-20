@@ -10,13 +10,13 @@ import java.math.BigDecimal;
 /**
  * @author JungleXia
  * @version 1.0
- * @title HouseSearchValidate
- * @description 房源搜索参数
- * @date 2024/1/19 14:01:04
+ * @title CommunitySearchValidate
+ * @description 小区搜索参数
+ * @date 2024/3/19 11:01:04
  */
 @Data
-@ApiModel("房源搜索参数")
-public class HouseSearchValidate extends SearchValidate {
+@ApiModel("小区搜索参数")
+public class CommunitySearchValidate extends SearchValidate {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,11 +29,8 @@ public class HouseSearchValidate extends SearchValidate {
     @ApiModelProperty(value = "街道|商圈")
     private String block;
 
-    @ApiModelProperty(value = "房源编号")
-    private String houseNo;
-
-    @ApiModelProperty(value = "总价")
-    private BigDecimal totalPrice;
+    @ApiModelProperty(value = "小区编号")
+    private String cNo;
 
     @ApiModelProperty(value = "单价")
     private BigDecimal unitPrice;
@@ -43,10 +40,6 @@ public class HouseSearchValidate extends SearchValidate {
 
     @ApiModelProperty(value = "状态", notes = "-1：跌价，1：涨价，2：上新")
     private Integer status;
-
-    @ApiModelProperty(value = "状态")
-    private boolean expired;
-
 }
 
 

@@ -5,7 +5,12 @@ import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.JSONWriter;
 import com.google.gson.reflect.TypeToken;
 import com.mdd.admin.mongo.service.BaseMongoService;
+import com.mdd.admin.validate.commons.PageValidate;
+import com.mdd.admin.validate.house.SearchValidate;
+import com.mdd.admin.validate.house.SortValidate;
 import com.mdd.common.core.PageResult;
+import com.mdd.common.util.MapUtils;
+import com.mdd.common.util.StringUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -28,6 +33,18 @@ import java.util.Map;
 
 @Component
 public abstract class BaseMongoServiceImpl<T> implements BaseMongoService<T> {
+    /**
+     * 排序-倒序
+     */
+    public static final String SORT_DESC = "descending";
+    /**
+     * 排序-正序
+     */
+    public static final String SORT_ASC = "ascending";
+    /**
+     * 排序-字段后缀
+     */
+    public static final String SORT_SUFFIX = "Sort";
 
     protected Class<T> getEntityClass() {
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
@@ -145,8 +162,7 @@ public abstract class BaseMongoServiceImpl<T> implements BaseMongoService<T> {
     @Override
     public long countByCondition(String[] params, Object[] values) {
         Query query = createQuery(params, values, null);
-        long count = mongoTemplate.count(query, getEntityClass());
-        return count;
+        return mongoTemplate.count(query, getEntityClass());
     }
 
     protected Map<String, Object> parseEntity(T t) throws Exception {
@@ -338,5 +354,27 @@ public abstract class BaseMongoServiceImpl<T> implements BaseMongoService<T> {
         List<T> resultList = mongoTemplate.find(query, getEntityClass());
         long total = countByCondition((String[]) propNameList.toArray(new String[0]), propValueList.toArray());
         return PageResult.iPageHandle(total, (long) (pageReq.getPageNumber() + 1), (long) pageReq.getPageSize(), resultList);
+    }
+
+    public PageResult<T> list(PageValidate pageValidate, SearchValidate searchValidate, SortValidate sortValidate) {
+        List<Sort.Order> orders =new ArrayList<>();
+        if (sortValidate != null) {
+            Map<String, String> sortMap = MapUtils.objectToMap(sortValidate);
+            for (Map.Entry<String, String> entry : sortMap.entrySet()) {
+                String sortKey = entry.getKey();
+                String sortValue = entry.getValue();
+                if (StringUtils.isNotEmpty(sortValue)) {
+                    if (StringUtils.equals(sortValue, SORT_DESC)) {
+                        orders.add(new Sort.Order(Sort.Direction.DESC, sortKey.replace(SORT_SUFFIX, "")));
+                    } else if (StringUtils.equals(sortValue, SORT_ASC)) {
+                        orders.add(new Sort.Order(Sort.Direction.ASC, sortKey.replace(SORT_SUFFIX, "")));
+                    }
+                }
+            }
+        } else {
+            orders.add(new Sort.Order(Sort.Direction.DESC, "_id"));
+        }
+        PageRequest pageReq = PageRequest.of(pageValidate.getPageNo() - 1, pageValidate.getPageSize(), Sort.by(orders));
+        return findPage(pageReq, searchValidate);
     }
 }

@@ -1,5 +1,8 @@
 package com.mdd.admin.mongo.service;
 
+import com.mdd.admin.validate.commons.PageValidate;
+import com.mdd.admin.validate.house.SearchValidate;
+import com.mdd.admin.validate.house.SortValidate;
 import com.mdd.common.core.PageResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -81,4 +84,6 @@ public interface BaseMongoService<T> {
 	PageResult<T> findPage(PageRequest pageReq, Object queryFilter);
 
 	PageResult<T> findPage(PageRequest pageReq, Object queryFilter, String[] includeFields, String[] excludeFields);
+
+	PageResult<T> list(PageValidate pageValidate, SearchValidate searchValidate, SortValidate sortValidate);
 }

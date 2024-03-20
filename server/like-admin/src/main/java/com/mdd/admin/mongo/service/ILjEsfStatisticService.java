@@ -11,19 +11,19 @@ public interface ILjEsfStatisticService extends BaseMongoService<LjEsfStatistic>
 
 	/**
 	 * 获取城市列表 市-区-街道
-	 * @return
+	 * @return List<CityVo>
 	 */
 	List<CityVo> findCityList(boolean showDistrict, boolean showBlock);
 
 	/**
 	 * 获取省份列表 省-市
-	 * @return
+	 * @return List<CityVo>
 	 */
 	List<CityVo> findProvinceList();
 
 	/**
 	 * 获取树形结构-城市列表：省-市-区-街道
-	 * @return
+	 * @return List<ZtreeVo>
 	 */
 	List<ZtreeVo> selectZtreeData();
 }

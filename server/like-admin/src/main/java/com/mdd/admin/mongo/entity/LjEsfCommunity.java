@@ -7,6 +7,10 @@ import java.util.List;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+/**
+ * 链家二手房小区信息
+ */
 @Data
 @Document(collection = "lj_esf_community")
 public class LjEsfCommunity implements Serializable {
@@ -91,11 +95,11 @@ public class LjEsfCommunity implements Serializable {
     /**
      * 房源数量变化
      */
-    private Integer diffNum;
+    private BigDecimal diffNum;
     /**
      * 均价涨跌
      */
-    private Integer diffPrice;
+    private BigDecimal diffPrice;
 
     /**
      * 来源页面

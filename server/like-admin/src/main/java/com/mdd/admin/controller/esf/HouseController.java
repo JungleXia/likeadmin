@@ -6,8 +6,8 @@ import com.mdd.admin.mongo.entity.LjEsfHouseHistory;
 import com.mdd.admin.mongo.service.ILjEsfHouseHistoryService;
 import com.mdd.admin.mongo.service.ILjEsfHouseService;
 import com.mdd.admin.validate.commons.PageValidate;
-import com.mdd.admin.validate.house.HouseOrderByValidate;
 import com.mdd.admin.validate.house.HouseSearchValidate;
+import com.mdd.admin.validate.house.HouseSortValidate;
 import com.mdd.common.core.AjaxResult;
 import com.mdd.common.core.PageResult;
 import com.mdd.common.validator.annotation.IDMust;
@@ -42,8 +42,8 @@ public class HouseController {
     @ApiOperation(value="房源列表")
     public AjaxResult<PageResult<LjEsfHouse>> list(@Validated PageValidate pageValidate,
                                              @Validated HouseSearchValidate searchValidate,
-                                                   @Validated HouseOrderByValidate houseOrderByValidate) {
-        PageResult<LjEsfHouse> vos = iLjEsfHouseService.list(pageValidate, searchValidate, houseOrderByValidate);
+                                                   @Validated HouseSortValidate sortValidate) {
+        PageResult<LjEsfHouse> vos = iLjEsfHouseService.list(pageValidate, searchValidate, sortValidate);
         return AjaxResult.success(vos);
     }
 

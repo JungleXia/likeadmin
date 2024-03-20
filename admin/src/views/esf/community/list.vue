@@ -1,22 +1,22 @@
-<!-- eslint-disable prettier/prettier -->
 <template>
     <div class="article-lists">
         <el-card class="!border-none" shadow="never">
             <el-form ref="formRef" class="mb-[-16px]" :model="queryParams" :inline="true">
-                <el-form-item label="文章标题">
-                    <el-input class="w-[280px]" v-model="queryParams.title" clearable @keyup.enter="resetPage" />
+                <el-form-item label="小区">
+                    <el-input class="w-[150px]" v-model="queryParams.community" clearable @keyup.enter="resetPage" />
                 </el-form-item>
-                <el-form-item label="栏目名称">
-                    <el-select class="w-[280px]" v-model="queryParams.cid">
-                        <el-option label="全部" value />
-                        <el-option v-for="item in optionsData.articleCate" :key="item.id" :label="item.name" :value="item.id" />
-                    </el-select>
+                <el-form-item label="省市">
+                    <el-cascader :options="optionsData.cityList" v-model="queryParams.city" clearable filterable @change="handleChange">
+                    </el-cascader>
                 </el-form-item>
-                <el-form-item label="文章状态">
-                    <el-select class="w-[280px]" v-model="queryParams.isShow">
+
+                <el-form-item label="状态">
+                    <el-select class="w-[120px]" v-model="queryParams.status">
                         <el-option label="全部" value />
-                        <el-option label="显示" :value="1" />
-                        <el-option label="隐藏" :value="0" />
+                        <el-option label="降价" :value="-1" />
+                        <el-option label="稳定" :value="0" />
+                        <el-option label="涨价" :value="1" />
+                        <el-option label="上新" :value="2" />
                     </el-select>
                 </el-form-item>
                 <el-form-item>
@@ -26,50 +26,37 @@
             </el-form>
         </el-card>
         <el-card class="!border-none mt-4" shadow="never">
-            <div>
-                <router-link v-perms="['article:add', 'article:add/edit']" :to="{
-                        path: getRoutePath('article:add/edit')
-                    }">
-                    <el-button type="primary" class="mb-4">
-                        <template #icon>
-                            <icon name="el-icon-Plus" />
-                        </template>
-                        发布文章
-                    </el-button>
-                </router-link>
-            </div>
-            <el-table size="large" v-loading="pager.loading" :data="pager.lists">
-                <el-table-column label="ID" prop="id" min-width="80" />
-                <el-table-column label="封面" min-width="100">
+            <el-table size="large" v-loading="pager.loading" :data="pager.lists" @sort-change="sortChange">
+                <el-table-column label="城市" prop="city" min-width="60" />
+                <el-table-column label="区域" prop="district" min-width="60" />
+                <el-table-column label="商圈" prop="block" min-width="60" />
+                <el-table-column label="小区" prop="community" min-width="100" />
+                <el-table-column label="均价" prop="unitPrice" min-width="60" sortable="custom" />
+                <el-table-column label="房源套数" prop="numbers" min-width="60" sortable="custom" />
+                <el-table-column label="成交周期" prop="dealDay" min-width="60" />
+                <el-table-column label="成交数量" prop="dealNum" min-width="80" sortable="custom" />
+                <el-table-column label="建筑年代" prop="buildYear" min-width="80" />
+                <el-table-column label="状态" prop="status" min-width="60">
                     <template #default="{ row }">
-                        <image-contain v-if="row.image" :src="row.image" :width="60" :height="45" :preview-src-list="[row.image]" preview-teleported fit="contain" />
+                        <el-tag v-if="row.status == -1" type="success">降价</el-tag>
+                        <el-tag v-if="row.status == 0">稳定</el-tag>
+                        <el-tag v-if="row.status == 1" type="danger">涨价</el-tag>
+                        <el-tag v-if="row.status == 2" type="warning">上线</el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column label="标题" prop="title" min-width="160" show-tooltip-when-overflow />
-                <el-table-column label="栏目" prop="category" min-width="100" />
-                <el-table-column label="作者" prop="author" min-width="120" />
-                <el-table-column label="浏览量" prop="visit" min-width="100" />
-                <el-table-column label="状态" min-width="100">
+                <el-table-column label="房源变化" prop="diffNum" min-width="60" sortable="custom" />
+                <el-table-column label="均价变化" prop="diffPrice" min-width="60" sortable="custom" />
+                <el-table-column label="更新时间" prop="createTime" min-width="80" show-tooltip-when-overflow>
                     <template #default="{ row }">
-                        <el-switch v-perms="['article:cate:change']" v-model="row.isShow" :active-value="1" :inactive-value="0" @change="changeStatus(row.id)" />
+                        <slot v-if="row.updateTime != null && row.updateTime != '' ">{{row.updateTime}}</slot>
                     </template>
                 </el-table-column>
-                <el-table-column label="排序" prop="sort" min-width="100" />
-                <el-table-column label="发布时间" prop="createTime" min-width="120" />
+
                 <el-table-column label="操作" width="120" fixed="right">
                     <template #default="{ row }">
-                        <el-button v-perms="['article:edit', 'article:add/edit']" type="primary" link>
-                            <router-link :to="{
-                                    path: getRoutePath('article:add/edit'),
-                                    query: {
-                                        id: row.id
-                                    }
-                                }">
-                                编辑
-                            </router-link>
-                        </el-button>
-                        <el-button v-perms="['article:del']" type="danger" link @click="handleDelete(row.id)">
-                            删除
+                        <a :href="row.url" target="_blank">查看链接</a>
+                        <el-button type="primary" style="" @click="clickHistory(row)">
+                            历史记录
                         </el-button>
                     </template>
                 </el-table-column>
@@ -79,52 +66,80 @@
             </div>
         </el-card>
     </div>
+
+    <el-drawer v-model="drawer" title="I am the title" :with-header="false">
+        <div>{{optionsData.title}}</div>
+        <div :style="optionsData.dataHeight">
+            <el-steps direction="vertical" :active="optionsData.dataLength">
+                <el-step :title="'在售套数：' +item.numbers + ' 均价：' + item.unitPrice + '元/㎡'" :description="item.createTime" :key="item.index" v-for="item in optionsData.historyData" />
+            </el-steps>
+        </div>
+    </el-drawer>
 </template>
-<script lang="ts" setup name="articleLists">
+<script lang="ts" setup name="communityList">
 import {
-    articleLists,
-    articleDelete,
-    articleStatus,
-    articleCateAll,
-} from "@/api/article";
+    communityList,
+    cityListAll,
+    communityHistory,
+} from "@/api/esf/community";
 import { useDictOptions } from "@/hooks/useDictOptions";
 import { usePaging } from "@/hooks/usePaging";
 import { getRoutePath } from "@/router";
 import feedback from "@/utils/feedback";
+import { ref } from "vue";
 const queryParams = reactive({
-    title: "",
-    cid: "",
-    isShow: "",
+    cNo: "",
+    community: "",
+    city: "",
+    numbersSort: "",
+    unitPriceSort: "",
+    dealNumSort: "",
+    diffNumSort: "",
+    diffPriceSort: "",
 });
 
+const drawer = ref(false);
 const { pager, getLists, resetPage, resetParams } = usePaging({
-    fetchFun: articleLists,
+    fetchFun: communityList,
     params: queryParams,
 });
 
 const { optionsData } = useDictOptions<{
-    articleCate: any[];
+    cityList: any[];
+    selectedOptions: any[];
+    historyData: any[];
+    title: any;
+    dataLength: any;
+    dataHeight: any;
 }>({
-    articleCate: {
-        api: articleCateAll,
+    cityList: {
+        api: cityListAll,
     },
 });
 
-const changeStatus = async (id: number) => {
-    try {
-        await articleStatus({ id });
-        feedback.msgSuccess("修改成功");
-        getLists();
-    } catch (error) {
-        getLists();
-    }
+const handleChange = async (area: any) => {
+    queryParams.city = area[1] as string;
+    resetPage();
 };
 
-const handleDelete = async (id: number) => {
-    await feedback.confirm("确定要删除？");
-    await articleDelete({ id });
-    feedback.msgSuccess("删除成功");
-    getLists();
+const sortChange = async (sort: any) => {
+    if (queryParams.city == null || queryParams.city == "") {
+        await feedback.msgWarning("请先选择城市");
+        return;
+    }
+    console.log(sort);
+    queryParams[sort.prop + "Sort"] = sort.order;
+    resetPage();
+};
+
+const clickHistory = async (row: any) => {
+    console.log(row.cno);
+    drawer.value = true;
+    optionsData.title = [row.city, row.district, row.community].join("   ");
+    optionsData.historyData = await communityHistory({ cNo: row.cno });
+    optionsData.dataLength = optionsData.historyData.length;
+    optionsData.dataHeight =
+        "height:" + optionsData.historyData.length * 60 + "px";
 };
 
 onActivated(() => {

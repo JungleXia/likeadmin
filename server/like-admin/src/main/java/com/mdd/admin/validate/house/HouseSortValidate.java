@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @date 2024/3/18 13:47:33
  */
 @Data
-public class HouseOrderByValidate implements Serializable {
+public class HouseSortValidate extends SortValidate {
 
     private static final long serialVersionUID = 1L;
 

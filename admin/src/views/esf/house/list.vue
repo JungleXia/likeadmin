@@ -3,7 +3,7 @@
         <el-card class="!border-none" shadow="never">
             <el-form ref="formRef" class="mb-[-16px]" :model="queryParams" :inline="true">
                 <el-form-item label="房源编码">
-                    <!-- <el-input class="w-[150px]" v-model="queryParams.houseNo" clearable @keyup.enter="resetPage" /> -->
+                    <el-input class="w-[150px]" v-model="queryParams.houseNo" clearable @keyup.enter="resetPage" />
                 </el-form-item>
                 <el-form-item label="小区">
                     <el-input class="w-[150px]" v-model="queryParams.community" clearable @keyup.enter="resetPage" />
@@ -47,6 +47,7 @@
                 <el-table-column label="面积" prop="area" min-width="60" />
                 <el-table-column label="户型" prop="houseType" min-width="80" />
                 <el-table-column label="发布时间" prop="publish" min-width="80" />
+                <el-table-column label="关注" prop="followers" min-width="60" />
                 <el-table-column label="状态" prop="status" min-width="60">
                     <template #default="{ row }">
                         <el-tag v-if="row.status == -1" type="success">降价</el-tag>
@@ -85,9 +86,9 @@
 
     <el-drawer v-model="drawer" title="I am the title" :with-header="false">
         <div>{{optionsData.title}}</div>
-        <div style="height: 120px; max-width: 600px">
-            <el-steps direction="vertical" :active="3">
-                <el-step :title="'总价：' +item.totalPrice + ' 均价：' + item.unitPrice" :description="item.createTime" :key="item.index" v-for="item in optionsData.historyData" />
+        <div :style="optionsData.dataHeight">
+            <el-steps direction="vertical" :active="optionsData.dataLength">
+                <el-step :title="'总价：' +item.totalPrice + '万 均价：' + item.unitPrice + '元/㎡'" :description="item.createTime" :key="item.index" v-for="item in optionsData.historyData" />
             </el-steps>
         </div>
     </el-drawer>
@@ -122,7 +123,9 @@ const { optionsData } = useDictOptions<{
     cityList: any[];
     selectedOptions: any[];
     historyData: any[];
-    title: "";
+    title: any;
+    dataLength: any;
+    dataHeight: any;
 }>({
     cityList: {
         api: cityListAll,
@@ -145,7 +148,6 @@ const sortChange = async (sort: any) => {
 };
 
 const clickHistory = async (row: any) => {
-    console.log(row.houseNo);
     drawer.value = true;
     optionsData.title = [
         row.city,
@@ -155,7 +157,9 @@ const clickHistory = async (row: any) => {
         row.area,
     ].join("   ");
     optionsData.historyData = await houseHistory({ houseNo: row.houseNo });
-    console.log(optionsData.historyData);
+    optionsData.dataLength = optionsData.historyData.length;
+    optionsData.dataHeight =
+        "height:" + optionsData.historyData.length * 60 + "px";
 };
 
 onActivated(() => {
