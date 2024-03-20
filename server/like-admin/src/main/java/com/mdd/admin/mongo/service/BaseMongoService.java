@@ -47,7 +47,7 @@ public interface BaseMongoService<T> {
 	 * @param value			查询字段值
 	 * @param includeFields 查询结果包含项
 	 * @param excludeFields 查询结果排除项
-	 * @return
+	 * @return	List
 	 */
 	List<T> findByProp(String propName, Object value, String[] includeFields, String[] excludeFields);
 

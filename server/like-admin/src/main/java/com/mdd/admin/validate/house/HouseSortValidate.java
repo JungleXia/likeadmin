@@ -2,8 +2,6 @@ package com.mdd.admin.validate.house;
 
 import lombok.Data;
 
-import java.io.Serializable;
-
 /**
  * @author JungleXia
  * @version 1.0

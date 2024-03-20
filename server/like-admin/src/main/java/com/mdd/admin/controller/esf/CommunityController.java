@@ -8,8 +8,6 @@ import com.mdd.admin.mongo.service.ILjEsfCommunityService;
 import com.mdd.admin.validate.commons.PageValidate;
 import com.mdd.admin.validate.house.CommunitySearchValidate;
 import com.mdd.admin.validate.house.CommunitySortValidate;
-import com.mdd.admin.validate.house.HouseSearchValidate;
-import com.mdd.admin.validate.house.HouseSortValidate;
 import com.mdd.common.core.AjaxResult;
 import com.mdd.common.core.PageResult;
 import com.mdd.common.validator.annotation.IDMust;
